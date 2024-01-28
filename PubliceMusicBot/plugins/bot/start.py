@@ -31,6 +31,49 @@ AMOP = ["ʜɪɪ, {0} ✨\n\n๏ ᴛʜɪѕ ɪѕ {1} \n\n➻ ᴀ ғᴀsᴛ & ᴘ�
 
 
 
+
+@app.on_message(filters.new_chat_members, group=-1)
+async def welcome(client, message: Message):
+    for member in message.new_chat_members:
+        try:
+            language = await get_lang(message.chat.id)
+            _ = get_string(language)
+            if await is_banned_user(member.id):
+                try:
+                    await message.chat.ban_member(member.id)
+                except:
+                    pass
+            if member.id == app.id:
+                if message.chat.type != ChatType.SUPERGROUP:
+                    await message.reply_text(_["start_4"])
+                    return await app.leave_chat(message.chat.id)
+                if message.chat.id in await blacklisted_chats():
+                    await message.reply_text(
+                        _["start_5"].format(
+                            app.mention,
+                            f"https://t.me/{app.username}?start=sudolist",
+                            config.SUPPORT_CHAT,
+                        ),
+                        disable_web_page_preview=True,
+                    )
+                    return await app.leave_chat(message.chat.id)
+
+                out = start_panel(_)
+                await message.reply_photo(
+                    photo=random.choice(START_IMG_URL),
+                    caption=_["start_3"].format(
+                        message.from_user.mention,
+                        app.mention,
+                        message.chat.title,
+                        app.mention,
+                    ),
+                    reply_markup=InlineKeyboardMarkup(out),
+                )
+                await add_served_chat(message.chat.id)
+                await message.stop_propagation()
+        except Exception as ex:
+            print(ex)
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
@@ -39,7 +82,7 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            await message.reply_sticker("CAACAgQAAxkBAAEGjpplqXL2RHjPWRHh-lA8X6fgKluHOwACLwwAAuqTAVKXwqXcqn7CKDQE")
+            await message.reply_sticker("CAACAgEAAxkBAAIUPmW070U-GThAEIfGLqFZMiSVIxAnAALsAgACUXsBRuBFNOWoTGFgHgQ")
             return await message.reply_photo(
                 photo=random.choice(START_IMG_URL),
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
@@ -95,7 +138,7 @@ async def start_pm(client, message: Message, _):
         served_chats = len(await get_served_chats())
         served_users = len(await get_served_users())
         UP, CPU, RAM, DISK = await bot_sys_stats()
-        await message.reply_sticker("CAACAgQAAxkBAAEGjpplqXL2RHjPWRHh-lA8X6fgKluHOwACLwwAAuqTAVKXwqXcqn7CKDQE")
+        await message.reply_sticker("CAACAgEAAxkBAAIUPmW070U-GThAEIfGLqFZMiSVIxAnAALsAgACUXsBRuBFNOWoTGFgHgQ")
         await message.reply_photo(
             photo=random.choice(START_IMG_URL),
             caption=random.choice(AMOP).format(message.from_user.mention, app.mention, UP, DISK, CPU, RAM,served_users,served_chats),
