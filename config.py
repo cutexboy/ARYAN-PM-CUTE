@@ -7,24 +7,24 @@ from pyrogram import filters
 load_dotenv()
 
 
-API_ID = int(getenv("API_ID","6435225")) # Get this value from my.telegram.org/apps
-API_HASH = getenv("API_HASH","4e984ea35f854762dcde906dce426c2d") # Get this value from my.telegram.org/apps
+API_ID = int(getenv("API_ID","")) # Get this value from my.telegram.org/apps
+API_HASH = getenv("API_HASH","") # Get this value from my.telegram.org/apps
 BOT_TOKEN = getenv("BOT_TOKEN") # Get your token from @BotFather on Telegram.
 MONGO_DB_URI = getenv("MONGO_DB_URI", None) # Get your mongo url from cloud.mongodb.com
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "9999"))
-LOGGER_ID = int(getenv("LOGGER_ID", "-1001840241140"))  # Chat id of a group for logging bot's activities/ Music Play Logs
-PUBLICELOGS = int(getenv("PUBLICELOGS", "-1001840241140")) # Chat id of a group for Bot Added Messege/Leaved Messege U can Add Your Support Group id Aslo
-GBANLOGS = int(getenv("GBANLOGS", "-1001840241140")) #Add Here Your Gbans Logs Channel Id 
-OWNER_ID = int(getenv("OWNER_ID", "5360305806")) # Get this value from @Sophia_x_MusicBot on Telegram by /id
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", "15000"))
+LOGGER_ID = int(getenv("LOGGER_ID", None))  # Chat id of a group for logging bot's activities/ Music Play Logs
+PUBLICELOGS = int(getenv("PUBLICELOGS", None)) # Chat id of a group for Bot Added Messege/Leaved Messege U can Add Your Support Group id Aslo
+GBANLOGS = int(getenv("GBANLOGS", None)) #Add Here Your Gbans Logs Channel Id 
+OWNER_ID = int(getenv("OWNER_ID", None)) # Get this value from @Sophia_x_MusicBot on Telegram by /id
 ## Fill these variables if you're deploying on heroku.
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")# Your heroku app name
 HEROKU_API_KEY = getenv("HEROKU_API_KEY") # Get it from http://dashboard.heroku.com/account
-UPSTREAM_REPO = getenv("UPSTREAM_REPO","https://github.com/AbhiModszYT/PubliceMusicBot",)
+UPSTREAM_REPO = getenv("UPSTREAM_REPO","https://github.com/cutexboy/ARYAN-PM-CUTE",)
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv("GIT_TOKEN", None)# Fill this variable if your upstream repository is private
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/AMBOTYT")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/AM_YTSUPPORT")
-AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", "True")) # Set this to "False" if you want the assistant to automatically leave chats after an interval
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/The_F2F_Shayri")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+XpchEgYvR5UxYzE1")
+AUTO_LEAVING_ASSISTANT = bool(getenv("AUTO_LEAVING_ASSISTANT", "False")) # Set this to "False" if you want the assistant to automatically leave chats after an interval
 SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "2a230af10e0a40638dc77c1febb47170") #Leave it
 SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "7f92897a59464ddbbf00f06cd6bda7fc") #Leave it
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25)) #Leave it
@@ -36,35 +36,6 @@ STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
 AMBOT = [
-    "💞",
-    "🔎",
-    "🔍",
-    "🧪",
-    "💣",
-     "⚡️",
-     "🔥",
-     "🕺",
-     "🎩",
-     "🌈",
-     "🍷",
-     "🥂",
-     "🍾",
-    "🥃",
-    "🥤",
-    "🍽",
-    "🍭",
-    "🚗",
-    "🚕",
-    "🚓",
-    "🚑",
-    "🚀",
-    "💎",
-    "🔮",
-    "🪄",
-    "💌",
-    "⁉️",
-    "💤",
-    "🧨"
 ]
 
 BANNED_USERS = filters.user()
@@ -73,13 +44,7 @@ lyrical = {}
 votemode = {}
 autoclean = []
 confirmer = {}
-START_IMG_URL = ["https://graph.org/file/04bc1c79ebdf6bbb15b05.jpg", 
-                 "https://graph.org/file/d5da08b65b054e7183ae9.jpg", 
-                 "https://graph.org/file/941558bfd46ee7f4c805b.jpg", 
-                 "https://graph.org/file/4e07ecb0b1f68047fef51.jpg", 
-                 "https://graph.org/file/2311d35739ca433f0b1c9.jpg", 
-                 "https://graph.org/file/3ccbe5d1b2df1282afff8.jpg", 
-                 "https://graph.org/file/13e35118f9db15f85d085.jpg"
+START_IMG_URL = ["https://telegra.ph/file/a4140e3cd950e98f385c4.jpg",
                 ]
 PING_IMG_URL = getenv("PING_IMG_URL", "https://te.legra.ph/file/b8a0c1a00db3e57522b53.jpg")
 PLAYLIST_IMG_URL = "https://te.legra.ph/file/4ec5ae4381dffb039b4ef.jpg"
@@ -106,4 +71,4 @@ if SUPPORT_CHAT:
     if not re.match("(?:http|https)://", SUPPORT_CHAT):
         raise SystemExit(
             "[ERROR] - Your SUPPORT_CHAT url is wrong. Please ensure that it starts with https://"
-        )
+)
